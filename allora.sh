@@ -213,10 +213,3 @@ sleep 7
 
 echo
 wait
-
-echo -e "${BOLD}${UNDERLINE}${DARK_YELLOW}Building and starting Docker containers...${RESET}"
-docker compose -f prod-docker-compose.yaml up --build -d
-echo
-
-echo -e "${BOLD}${DARK_YELLOW}Checking running Docker containers...${RESET}"
-docker compose -f prod-docker-compose.yaml logs -f
