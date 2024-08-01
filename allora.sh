@@ -24,7 +24,7 @@ echo -e "${BOLD}${DARK_YELLOW}RAM : 2 to 4 GB.${RESET}"
 echo -e "${BOLD}${DARK_YELLOW}Storage : SSD or NVMe with at least 5GB of space.${RESET}"
 echo
 
-echo -e "${CYAN}Do you meet all of these requirements? (Y/N):${RESET}"
+echo -e "${CYAN}siap menjalankan? mengskyy nih boss (Y/N):${RESET}"
 read -p "" response
 echo
 
@@ -34,7 +34,7 @@ if [[ ! "$response" =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-echo -e "${CYAN}Cai dat dependencies allora, Cai roi thi thoi? (Y/N):${RESET}"
+echo -e "${CYAN}lu ready ga bos? mengskyy nih boss (Y/N):${RESET}"
 read -p "" installdep
 echo
 
@@ -105,7 +105,7 @@ fi
 
 echo -e "${BOLD}${UNDERLINE}${DARK_YELLOW}Continuce Installing worker node...${RESET}"
 
-printf 'Chon topic de cai dat (2, 4, 5 Active updated: 18/07/2024): ... '
+printf 'Chon topic de cai dat (2, 4, 6 Active updated: 31/07/2024): ... '
 read CHOICE
 
 mkdir -p huggingmodel${CHOICE}/worker/data/head
@@ -132,7 +132,7 @@ echo -e "${BOLD}${DARK_YELLOW}Export private key:${RESET}"
 allorad keys export huggingmodel${CHOICE} --keyring-backend test --unarmored-hex --unsafe
 echo
 wait
-printf '(COPY/PASTE) YOUR HEX_CODE_PK and FILL HERE: ... '
+printf '(COPY/PASTE) paste privatekey lu disini: ... '
 read HEX
 
 sed -i "s/hex_coded_pk: ''/hex_coded_pk: $HEX/g" /root/huggingmodel${CHOICE}/worker/config.yaml
@@ -179,7 +179,7 @@ services:
       - --private-key=/data/worker/key/priv.bin
       - --log-level=debug
       - --port=9010
-      - --boot-nodes=/dns/head-0-p2p.testnet-1.testnet.allora.network/tcp/32130/p2p/12D3KooWLBhsSucVVcyVCaM9pvK8E7tWBM9L19s7XQHqqejyqgEC,/dns/head-1-p2p.testnet-1.testnet.allora.network/tcp/32131/p2p/12D3KooWEUNWg7YHeeCtH88ju63RBfY5hbdv9hpv84ffEZpbJszt,/dns/head-2-p2p.testnet-1.testnet.allora.network/tcp/32132/p2p/12D3KooWATfUSo95wtZseHbogpckuFeSvpL4yks6XtvrjVHcCCXk
+      - --boot-nodes=/dns/head-0-p2p.testnet-1.testnet.allora.network/tcp/32130/p2p/12D3KooWLBhsSucVVcyVCaM9pvK8E7tWBM9L19s7XQHqqejyqgEC,/dns/head-1-p2p.testnet-1.testnet.allora.network/tcp/32131/p2p/12D3KooWEUNWg7YHeeCtH88ju63RBfY5hbdv9hpv84ffEZpbJszt,/dns/head-2-p2p.testnet-1.testnet.allora.network/tcp/32132/p2p/12D3KooWATfUSo95wtZseHbogpckuFeSvpL4yks6XtvrjVHcCCXk,/dns/head-5-p2p.testnet-1.testnet.allora.network/tcp/32135/p2p/12D3KooWAazxKoYszYt4XhCrGWoEUyAFMaU7DB9RZ8TsA7qwLfin,/dns/head-4-p2p.testnet-1.testnet.allora.network/tcp/32134/p2p/12D3KooWRF8HNU21AukE7KC6kZqxqvCiZ5nM9xcLW4YvsuGAYbcm,/dns/head-3-p2p.testnet-1.testnet.allora.network/tcp/32133/p2p/12D3KooWDrArwBSCNxwL3mgJ2NaUygdtPtiwVQtPJafyAH6FSiUf
       - --topic=allora-topic-${CHOICE}-worker
       - --allora-node-rpc-address=https://allora-rpc.testnet-1.testnet.allora.network/
       - --allora-chain-home-dir=/data/.allorad
@@ -210,6 +210,3 @@ curl -L https://faucet.testnet-1.testnet.allora.network/send/allora-testnet-1/$(
 sleep 10
 curl -L https://faucet.testnet-1.testnet.allora.network/send/allora-testnet-1/$(allorad keys  show huggingmodel${CHOICE} -a --keyring-backend test)
 sleep 7
-
-echo
-wait
