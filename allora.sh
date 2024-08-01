@@ -24,7 +24,7 @@ echo -e "${BOLD}${DARK_YELLOW}RAM : 2 to 4 GB.${RESET}"
 echo -e "${BOLD}${DARK_YELLOW}Storage : SSD or NVMe with at least 5GB of space.${RESET}"
 echo
 
-echo -e "${CYAN}siap menjalankan? mengskyy nih boss (Y/N):${RESET}"
+echo -e "${CYAN}are you ready bosku? mengsky nih boss (Y/N):${RESET}"
 read -p "" response
 echo
 
@@ -34,7 +34,7 @@ if [[ ! "$response" =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-echo -e "${CYAN}lu ready ga bos? mengskyy nih boss (Y/N):${RESET}"
+echo -e "${CYAN}lu ready ga bos? kalo ready pencet Y lah kocak (Y/N):${RESET}"
 read -p "" installdep
 echo
 
@@ -105,7 +105,7 @@ fi
 
 echo -e "${BOLD}${UNDERLINE}${DARK_YELLOW}Continuce Installing worker node...${RESET}"
 
-printf 'Chon topic de cai dat (2, 4, 6 Active updated: 31/07/2024): ... '
+printf 'pilih topik (topik 2, 4, 6 Active updated: 31/07/2024): ... '
 read CHOICE
 
 mkdir -p huggingmodel${CHOICE}/worker/data/head
@@ -132,7 +132,7 @@ echo -e "${BOLD}${DARK_YELLOW}Export private key:${RESET}"
 allorad keys export huggingmodel${CHOICE} --keyring-backend test --unarmored-hex --unsafe
 echo
 wait
-printf '(COPY/PASTE) paste privatekey lu disini: ... '
+printf '(COPY/PASTE) paste privatekey lu disini, di bawah warning cek: ... '
 read HEX
 
 sed -i "s/hex_coded_pk: ''/hex_coded_pk: $HEX/g" /root/huggingmodel${CHOICE}/worker/config.yaml
@@ -202,11 +202,3 @@ EOF
 
 echo -e "${BOLD}${DARK_YELLOW}Generating prod-docker-compose.yml file generated successfully!${RESET}"
 echo
-
-echo -e "${BOLD}${DARK_YELLOW}Faucet fund address worker:${RESET}"
-curl -L https://faucet.testnet-1.testnet.allora.network/send/allora-testnet-1/$(allorad keys  show huggingmodel${CHOICE} -a --keyring-backend test)
-sleep 5
-curl -L https://faucet.testnet-1.testnet.allora.network/send/allora-testnet-1/$(allorad keys  show huggingmodel${CHOICE} -a --keyring-backend test)
-sleep 10
-curl -L https://faucet.testnet-1.testnet.allora.network/send/allora-testnet-1/$(allorad keys  show huggingmodel${CHOICE} -a --keyring-backend test)
-sleep 7
